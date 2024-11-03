@@ -30,7 +30,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'www.vibes4you.com',
-    'localhost'
+    'localhost',
+    'vibes-only-53067d00b2c3.herokuapp.com'
 ]
 
 
