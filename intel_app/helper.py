@@ -32,17 +32,14 @@ import itertools
 # Initialize a counter to generate unique numbers within the session
 counter = itertools.count()
 
-def ref_generator():
-    unique_number = next(counter)  # Get the next unique number
-    secret = secrets.token_hex(6)  # Increase randomness with a longer hex
+import secrets
 
-    return f"{unique_number:06}-{secret}".upper()
+def ref_generator(length=12):
+    # Generate a random hexadecimal string with the specified length
+    return secrets.token_hex(length // 2).upper()  # Divide by 2 because each hex char represents 4 bits
 
-def top_up_ref_generator():
-    unique_number = next(counter)
-    secret = secrets.token_hex(5)  # Slightly shorter hex for variety
-
-    return f"TOPUP-{unique_number:06}-{secret}".upper()
+def top_up_ref_generator(length=15):
+    return f"TOPUP-{secrets.token_hex((length - 6) // 2).upper()}"
 
 
 def send_bundle(user, network, bundle_amount, reference, receiver_phone):
