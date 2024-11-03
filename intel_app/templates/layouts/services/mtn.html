@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include 'inc/header.html' %}
+
+  <header>
+    {% include 'inc/header.html' %}
+    <div class="container mt-5">
+      <div class="page-banner mtn-banner">
+        <div class="row justify-content-center align-items-center h-100">
+          <div class="col-md-6">
+            <nav aria-label="Breadcrumb">
+              <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                <li class="breadcrumb-item text-white"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active text-white"><a href="{% url 'services' %}">Services</a></li>
+                <li class="breadcrumb-item active text-white">MTN</li>
+              </ul>
+            </nav>
+            <h1 class="text-center text-white">MTN Bundles</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-section" id="services">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="title-section">Buy MTN Bundle</h2>
+          <div class="divider mx-auto"></div>
+        </div>
+
+        <form method="post" action="{% url 'mtn_pay_with_wallet' %}" id="mtnPaymentForm">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="phone_number">Phone Number</label>
+              {{ form.phone_number }}
+              <small>Number must be 10 digits. E.g. 0240000000</small>
+              <!-- Display field errors -->
+              {% if form.phone_number.errors %}
+                {% for error in form.phone_number.errors %}
+                  <small style="color: red">{{ error }}</small>
+                {% endfor %}
+              {% endif %}
+            </div>
+            <div class="form-group col-md-6">
+              <label for="offers">Bundle Offer</label>
+              {{ form.offers }}
+              <!-- Display field errors -->
+              {% if form.offers.errors %}
+                {% for error in form.offers.errors %}
+                  <small style="color: red">{{ error }}</small>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+          <input type="hidden" name="reference" value="{{ ref }}">
+          <button type="submit" class="btn btn-primary" id="pay-with-wallet-btn">Pay with Wallet</button>
+          <span id="loading-spinner" class="spinner-border text-primary mt-2" role="status" style="display: none;"></span>
+          <h6 class="mt-2"><i class="fa fa-money"></i> Wallet Balance: GHS {{ wallet }}</h6>
+          <a href="{% url 'topup-info' %}">Want to top up your wallet? Click here!</a>
+        </form>
+      </div>
+    </div> <!-- .page-section -->
+  </main>
+
+  {% include 'inc/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.getElementById('mtnPaymentForm').addEventListener('submit', function(e) {
+    const submitButton = document.getElementById('pay-with-wallet-btn');
+    const loadingSpinner = document.getElementById('loading-spinner');
+
+    // Disable the submit button and show the loading spinner
+    submitButton.disabled = true;
+    submitButton.textContent = 'Processing...';
+    loadingSpinner.style.display = 'inline-block';
+  });
+</script>
+{% endblock scripts %}
