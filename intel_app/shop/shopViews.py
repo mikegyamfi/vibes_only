@@ -5,7 +5,6 @@ import random
 from datetime import datetime
 from time import sleep
 
-import pandas as pd
 from decouple import config
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
