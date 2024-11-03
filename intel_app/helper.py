@@ -26,20 +26,23 @@ ishare_map = {
 }
 
 
+import secrets
+import itertools
+
+# Initialize a counter to generate unique numbers within the session
+counter = itertools.count()
+
 def ref_generator():
-    # Use date, time down to microseconds, and a longer random hex token
-    now_time = datetime.now().strftime('%Y%m%d%H%M%S%f')
-    secret = secrets.token_hex(4)  # Increase length for more randomness
+    unique_number = next(counter)  # Get the next unique number
+    secret = secrets.token_hex(6)  # Increase randomness with a longer hex
 
-    return f"{now_time}{secret}".upper()
-
+    return f"{unique_number:06}-{secret}".upper()
 
 def top_up_ref_generator():
-    # Use date, time down to microseconds, and a slightly shorter random hex token
-    now_time = datetime.now().strftime('%Y%m%d%H%M%S%f')
-    secret = secrets.token_hex(3)  # Increase length for more randomness
+    unique_number = next(counter)
+    secret = secrets.token_hex(5)  # Slightly shorter hex for variety
 
-    return f"TOPUP-{now_time}{secret}".upper()
+    return f"TOPUP-{unique_number:06}-{secret}".upper()
 
 
 def send_bundle(user, network, bundle_amount, reference, receiver_phone):
