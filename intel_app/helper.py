@@ -44,7 +44,7 @@ def send_bundle(user, network, bundle_amount, reference, receiver_phone):
     url = f"https://console.hubnet.app/live/api/context/business/transaction/{network}-new-transaction"
 
     headers = {
-        "token": "Bearer cZMvB7HhDWlk1b7wCJsMvsbcCNxkg4mekps",
+        "token": config("BEARER_TOKEN"),
     }
 
     payload = {
