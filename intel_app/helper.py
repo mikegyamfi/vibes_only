@@ -27,15 +27,17 @@ ishare_map = {
 
 
 def ref_generator():
-    now_time = datetime.now().strftime('%H%M%S')
-    secret = secrets.token_hex(2)
+    # Use date, time down to microseconds, and a longer random hex token
+    now_time = datetime.now().strftime('%Y%m%d%H%M%S%f')
+    secret = secrets.token_hex(4)  # Increase length for more randomness
 
     return f"{now_time}{secret}".upper()
 
 
 def top_up_ref_generator():
-    now_time = datetime.now().strftime('%H%M')
-    secret = secrets.token_hex(1)
+    # Use date, time down to microseconds, and a slightly shorter random hex token
+    now_time = datetime.now().strftime('%Y%m%d%H%M%S%f')
+    secret = secrets.token_hex(3)  # Increase length for more randomness
 
     return f"TOPUP-{now_time}{secret}".upper()
 
