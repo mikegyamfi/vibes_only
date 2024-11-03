@@ -3,7 +3,6 @@ import hmac
 import json
 from datetime import datetime
 
-import pandas as pd
 from decouple import config
 from django.contrib.auth.forms import PasswordResetForm
 from django.db import transaction
