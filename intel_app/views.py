@@ -44,6 +44,9 @@ def pay_with_wallet(request):
         reference = request.POST.get("reference")
         network = 'at'
 
+
+        print(reference)
+
         # Validate the form data
         form = forms.IShareBundleForm(data=request.POST, status=user.status)
         if not form.is_valid():
