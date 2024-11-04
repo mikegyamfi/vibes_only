@@ -34,11 +34,11 @@ counter = itertools.count()
 
 import secrets
 
-def ref_generator(length=12):
+def ref_generator(length=30):
     # Generate a random hexadecimal string with the specified length
     return secrets.token_hex(length // 2).upper()  # Divide by 2 because each hex char represents 4 bits
 
-def top_up_ref_generator(length=15):
+def top_up_ref_generator(length=25):
     return f"TOPUP-{secrets.token_hex((length - 6) // 2).upper()}"
 
 
