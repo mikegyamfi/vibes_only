@@ -58,8 +58,8 @@ def send_bundle(user, network, bundle_amount, reference, receiver_phone):
 
     payload = {
         "phone": str(receiver_phone),
-        "volume": str(bundle_amount),
-        "reference": reference
+        "volume": bundle_amount,
+        "reference": str(reference)
     }
 
     # Sending the POST request to the API
