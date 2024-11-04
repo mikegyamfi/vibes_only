@@ -28,18 +28,25 @@ ishare_map = {
 
 import secrets
 import itertools
+import random
 
 # Initialize a counter to generate unique numbers within the session
 counter = itertools.count()
 
-import secrets
-
 def ref_generator(length=30):
-    # Generate a random hexadecimal string with the specified length
-    return f"DT-{secrets.token_hex(length // 2).upper()}-VBZ"  # Divide by 2 because each hex char represents 4 bits
+    # Get the next unique counter and generate a random component
+    unique_number = next(counter)
+    random_part = secrets.token_hex((length - 10) // 2).upper()  # Adjusted length for prefix, counter, and suffix
+    suffix = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=3))  # Random 3-character suffix
+
+    return f"DT{unique_number:04}-{random_part}-{suffix}"
 
 def top_up_ref_generator(length=25):
-    return f"TOPUP-{secrets.token_hex((length - 6) // 2).upper()}"
+    unique_number = next(counter)
+    random_part = secrets.token_hex((length - 10) // 2).upper()  # Adjusted length for prefix and counter
+    suffix = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=2))  # Random 2-character suffix
+
+    return f"TOPUP-{unique_number:04}-{random_part}-{suffix}"
 
 
 def send_bundle(user, network, bundle_amount, reference, receiver_phone):
