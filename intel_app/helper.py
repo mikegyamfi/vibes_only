@@ -33,7 +33,7 @@ import random
 # Initialize a counter to generate unique numbers within the session
 counter = itertools.count()
 
-def ref_generator(length=30):
+def ref_generator(length=40):
     # Get the next unique counter and generate a random component
     unique_number = next(counter)
     random_part = secrets.token_hex((length - 10) // 2).upper()  # Adjusted length for prefix, counter, and suffix
