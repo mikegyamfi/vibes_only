@@ -134,7 +134,7 @@ class IShareBundleTransaction(models.Model):
     bundle_number = models.BigIntegerField(null=False, blank=False)
     amount = models.FloatField(null=False, blank=False, default=0.0)
     offer = models.CharField(max_length=250, null=False, blank=False)
-    reference = models.CharField(max_length=20, null=False, blank=True)
+    reference = models.CharField(max_length=250, null=False, blank=True)
     transaction_date = models.DateTimeField(auto_now_add=True)
     transaction_status = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=500, null=True, blank=True)
@@ -255,7 +255,7 @@ class BigTimeTransaction(models.Model):
     bundle_number = models.BigIntegerField(null=False, blank=False)
     amount = models.FloatField(null=False, blank=False, default=0.0)
     offer = models.CharField(max_length=250, null=False, blank=False)
-    reference = models.CharField(max_length=20, null=False, blank=True)
+    reference = models.CharField(max_length=250, null=False, blank=True)
     transaction_date = models.DateTimeField(auto_now_add=True)
     choices = (
         ("Pending", "Pending"),
@@ -297,7 +297,7 @@ class MTNTransaction(models.Model):
     bundle_number = models.BigIntegerField(null=False, blank=False)
     amount = models.FloatField(null=False, blank=False, default=0.0)
     offer = models.CharField(max_length=250, null=False, blank=False)
-    reference = models.CharField(max_length=20, null=False, blank=True)
+    reference = models.CharField(max_length=250, null=False, blank=True)
     transaction_date = models.DateTimeField(auto_now_add=True)
     choices = (
         ("Pending", "Pending"),
@@ -317,7 +317,7 @@ class TelecelTransaction(models.Model):
     bundle_number = models.BigIntegerField(null=False, blank=False)
     amount = models.FloatField(null=False, blank=False, default=0.0)
     offer = models.CharField(max_length=250, null=False, blank=False)
-    reference = models.CharField(max_length=20, null=False, blank=True)
+    reference = models.CharField(max_length=250, null=False, blank=True)
     transaction_date = models.DateTimeField(auto_now_add=True)
     choices = (
         ("Pending", "Pending"),
