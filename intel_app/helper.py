@@ -33,13 +33,13 @@ import random
 # Initialize a counter to generate unique numbers within the session
 counter = itertools.count()
 
-def ref_generator(length=40):
+def ref_generator(length=20):
     # Get the next unique counter and generate a random component
     unique_number = next(counter)
     random_part = secrets.token_hex((length - 10) // 2).upper()  # Adjusted length for prefix, counter, and suffix
     suffix = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=10))  # Random 3-character suffix
 
-    return f"DT{unique_number:04}-{random_part}-{suffix}"
+    return f"zszwszs{unique_number:04}szsz-wqAW{random_part}IJIK-{suffix}"
 
 def top_up_ref_generator(length=25):
     unique_number = next(counter)
@@ -58,7 +58,7 @@ def send_bundle(user, network, bundle_amount, reference, receiver_phone):
 
     payload = {
         "phone": str(receiver_phone),
-        "volume": bundle_amount,
+        "volume": str(bundle_amount),
         "reference": str(reference)
     }
 
