@@ -33,13 +33,13 @@ import random
 # Initialize a counter to generate unique numbers within the session
 counter = itertools.count()
 
-def ref_generator(length=10):
+def ref_generator(length=7):
     # Get the next unique counter and generate a random component
     unique_number = next(counter)
     random_part = secrets.token_hex((length - 10) // 2).upper()  # Adjusted length for prefix, counter, and suffix
-    suffix = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=3))  # Random 3-character suffix
+    suffix = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=2))  # Random 3-character suffix
 
-    return f"zszwszs{unique_number:04}szsz-wqAW{random_part}IJIK-{suffix}"
+    return f"zszwszs{unique_number:04}szszwqAW{random_part}IJIK{suffix}"
 
 def top_up_ref_generator(length=25):
     unique_number = next(counter)
