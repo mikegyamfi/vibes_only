@@ -194,7 +194,7 @@ def mtn_pay_with_wallet(request):
                 return redirect('mtn')
 
             # Check if the transaction was successful
-            if send_bundle_response.status_code == 200 and data.get("status") == True:
+            if send_bundle_response.status_code == 200 and data['data']['status'] is True:
                 # Deduct amount from user's wallet
                 user.wallet -= float(amount)
                 user.save()
