@@ -56,9 +56,12 @@ def send_bundle(user, network, bundle_amount, reference, receiver_phone):
         "token": config("BEARER_TOKEN"),
     }
 
+    print(bundle_amount)
+    print()
+
     payload = {
         "phone": str(receiver_phone),
-        "volume": str(bundle_amount),
+        "volume": str(int(bundle_amount)),
         "reference": str(reference)
     }
 
