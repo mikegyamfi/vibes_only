@@ -36,7 +36,7 @@ counter = itertools.count()
 def ref_generator(length=7):
     # Get the next unique counter and generate a random component
     unique_number = next(counter)
-    random_part = secrets.token_hex((length - 10) // 2).upper()  # Adjusted length for prefix, counter, and suffix
+    random_part = secrets.token_hex((length) // 2).upper()  # Adjusted length for prefix, counter, and suffix
     suffix = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=2))  # Random 3-character suffix
 
     return f"zszs{unique_number:04}szAW{random_part}IJIK{suffix}"
